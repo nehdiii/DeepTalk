@@ -40,7 +40,7 @@ you can download weights from this link
 
 ## 5) how to use 
 
-
+dependencies
 ```
 import torch as th
 import numpy as np
@@ -85,7 +85,8 @@ from utils.chatbotUtils import *
 
 
 ```
-`
+init the system 
+```
 
 a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_template.obj",
               "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_mean.npy",
@@ -95,11 +96,11 @@ a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/Mes
 
 
 geom_unet,context_model,encoder,_,_,espnet2 = a.animator_model_setup()
+```
 
 
-
-
-
+loop for chat 
+```
 print("Loading Models is Done")
 question = ""
 print("\nStart the Chat with VRass (to quit type \"stop\")")
@@ -126,6 +127,6 @@ while True:
           renderer.to_video(voice2AnimationRes,a.audio_path+"/testaudio1.wav",a.save_path+"/"+"test")
           print('setp5 is done')
           
-`
+```
 
 in the end i provided this link to colab to show you code in more details [Use DeepTalk](https://colab.research.google.com/drive/1DZfBoaWp2Idf8Ym6wtwRklKde_N4J4wq#scrollTo=6GfnyluST__J) 
