@@ -16,3 +16,20 @@ list of dependcies
 
 * Pytorch
 * pytorch 3d 
+* numpy 
+* librosa
+* torchaudio
+* scipy
+* pickle
+* tqdm
+
+## 4) weights for each model 
+
+you can download weights from this link 
+
+* put config.yaml and train.total_count.ave_10best.pth in for_espnet2 folder if you wanna use espnet2 as tts 
+* put context_model.pkl,encoder.pkl and vertex_unet.pkl in for_mesh_animation
+* put checkpoint_postnet_100000.pth.tar and checkpoint_transformer_160000.pth.tar if you want to use tts with transformer network 
+
+
+
