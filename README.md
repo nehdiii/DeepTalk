@@ -40,7 +40,7 @@ you can download weights from this link
 
 ## 5) how to use 
 
-importing system dependencies
+
 `
 import torch as th
 import numpy as np
@@ -82,11 +82,11 @@ vocoder_tag = "parallel_wavegan/ljspeech_parallel_wavegan.v1"
 from animator.PredictMeshSequences import MeshSeq
 from utils.chatbotUtils import show_video
 from utils.chatbotUtils import *
-`
 
-initialization of MeshSeq class and loading of pretrained models
 
-`
+
+
+
 a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_template.obj",
               "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_mean.npy",
               "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_std.npy",
@@ -95,11 +95,11 @@ a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/Mes
 
 
 geom_unet,context_model,encoder,_,_,espnet2 = a.animator_model_setup()
-`
 
-starting a while loop (e.g conversation with the audio vis chat bot)
 
-`
+
+
+
 print("Loading Models is Done")
 question = ""
 print("\nStart the Chat with VRass (to quit type \"stop\")")
