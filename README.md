@@ -10,3 +10,9 @@ This virtual assistant called DeepTalk is a Full pipline of Ai systems to bring 
 
 https://user-images.githubusercontent.com/74627775/188270463-4ead2fe2-0a49-4a5a-a0a3-8d8ff542dc57.mp4
 
+## 3) decencies and project setup for use
+
+list of dependcies
+
+ Markup : * Pytorch
+          * pytorch 3d 
