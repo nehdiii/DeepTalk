@@ -41,7 +41,7 @@ you can download weights from this link
 ## 5) how to use 
 
 
-`
+```
 import torch as th
 import numpy as np
 import torchaudio
@@ -84,8 +84,8 @@ from utils.chatbotUtils import show_video
 from utils.chatbotUtils import *
 
 
-
-
+```
+`
 
 a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_template.obj",
               "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_mean.npy",
