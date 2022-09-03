@@ -22,6 +22,12 @@ list of dependcies
 * scipy
 * pickle
 * tqdm
+* trimesh
+* unidecode
+* ffmpeg-python
+* iopath
+* pip install -q espnet==0.10.6 pyopenjtalk==0.2 pypinyin==0.44.0 parallel_wavegan==0.5.4 gdown==4.4.0 espnet_model_zoo
+* openai
 
 ## 4) weights for each model 
 
@@ -32,4 +38,92 @@ you can download weights from this link
 * put checkpoint_postnet_100000.pth.tar and checkpoint_transformer_160000.pth.tar if you want to use tts with transformer network 
 
 
+## 5) how to use 
 
+ importing system dependencies
+`
+import torch as th
+import numpy as np
+import torchaudio
+from utils.helpers import *
+from Models.context_model import *
+from Models.encoders import *
+from Models.vertex_unet import *
+from utils.renderer import *
+# ------------------------------
+
+from utils.TTSMelUtils import spectrogram2wav
+from utils.TTSTextUtils import text_to_sequence,string_chunks
+from Models.TTSNetworks import ModelPostNet, Model
+
+
+from utils.chatbotUtils import *
+
+from espnet2.bin.tts_inference import Text2Speech
+from espnet2.utils.types import str_or_none
+
+from scipy.io.wavfile import write
+from collections import OrderedDict
+from tqdm import tqdm
+import pickle
+import io
+import librosa
+import torch
+import time 
+from google.colab.patches import cv2_imshow
+import cv2
+
+
+max_len = 1000
+SR = 22050
+lang = 'English'
+tag = 'kan-bayashi/ljspeech_vits'
+vocoder_tag = "parallel_wavegan/ljspeech_parallel_wavegan.v1"
+from animator.PredictMeshSequences import MeshSeq
+from utils.chatbotUtils import show_video
+from utils.chatbotUtils import *
+`
+initialization of MeshSeq class and loading of pretrained models
+
+`
+a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_template.obj",
+              "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_mean.npy",
+              "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/face_std.npy",
+              "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/forehead_mask.txt",
+              "/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/MeshData/neck_mask.txt")
+
+
+geom_unet,context_model,encoder,_,_,espnet2 = a.animator_model_setup()
+`
+starting a while loop (e.g conversation with the audio vis chat bot)
+
+`
+print("Loading Models is Done")
+question = ""
+print("\nStart the Chat with VRass (to quit type \"stop\")")
+while True:
+          print('setp1 : input your question:')
+          question = input("Question: ")
+          if question == "stop":
+              break
+          
+
+          text = chat(question,start_chat_log).split("\n")[0]
+          print("step1 is done")
+          print('step2: start generating a speech from input text')
+          text2voiceRes = a.get_espnet_prediction(espnet2,text)
+          torchaudio.save(a.audio_path+"/testaudio1.wav",text2voiceRes[None,:].cpu(), sample_rate=16000)
+          print('step2 is done')
+          print('setp3 : generate a mesh seq or facial blendshapes sync with the generated audio')
+          voice2AnimationRes = a.get_Animation_model_prediction(geom_unet,context_model,encoder,text2voiceRes[None,:])
+          print('step3 is done')
+          print('step4 : render the generated mesh seq to seq of jpg images')
+          renderer = Renderer(a.template_verts_path)
+          print('step4 is done')
+          print('step 5 : transform the seq of jpg images to video given a frame rate')
+          renderer.to_video(voice2AnimationRes,a.audio_path+"/testaudio1.wav",a.save_path+"/"+"test")
+          print('setp5 is done')
+          
+`
+
+in the end i provided this link to colab to show you code in more details [Use DeepTalk](https://colab.research.google.com/drive/1DZfBoaWp2Idf8Ym6wtwRklKde_N4J4wq#scrollTo=6GfnyluST__J) 
