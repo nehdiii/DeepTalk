@@ -14,5 +14,5 @@ https://user-images.githubusercontent.com/74627775/188270463-4ead2fe2-0a49-4a5a-
 
 list of dependcies
 
- Markup : * Pytorch
-          * pytorch 3d 
+* Pytorch
+* pytorch 3d 
