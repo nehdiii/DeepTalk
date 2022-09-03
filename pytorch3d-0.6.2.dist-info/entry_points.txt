@@ -1,4 +1,0 @@
-[console_scripts]
-pytorch3d_implicitron_runner = projects.implicitron_trainer.experiment:experiment
-pytorch3d_implicitron_visualizer = projects.implicitron_trainer.visualize_reconstruction:main
-
