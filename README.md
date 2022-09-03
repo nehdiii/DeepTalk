@@ -40,7 +40,7 @@ you can download weights from this link
 
 ## 5) how to use 
 
- importing system dependencies
+importing system dependencies
 `
 import torch as th
 import numpy as np
@@ -50,7 +50,7 @@ from Models.context_model import *
 from Models.encoders import *
 from Models.vertex_unet import *
 from utils.renderer import *
-# ------------------------------
+
 
 from utils.TTSMelUtils import spectrogram2wav
 from utils.TTSTextUtils import text_to_sequence,string_chunks
@@ -83,6 +83,7 @@ from animator.PredictMeshSequences import MeshSeq
 from utils.chatbotUtils import show_video
 from utils.chatbotUtils import *
 `
+
 initialization of MeshSeq class and loading of pretrained models
 
 `
@@ -95,6 +96,7 @@ a  = MeshSeq("/content/gdrive/MyDrive/Colab_Notebooks/VirtualAssisstant/Data/Mes
 
 geom_unet,context_model,encoder,_,_,espnet2 = a.animator_model_setup()
 `
+
 starting a while loop (e.g conversation with the audio vis chat bot)
 
 `
